@@ -19,8 +19,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Docker image
+      - name: Build Docker image for frontend
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/quirknotes_frontend:latest -f Dockerfile_frontend .
 
-      - name: Push Docker image to Docker Hub
+      - name: Push Docker image to Docker Hub for frontend
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/quirknotes_frontend:latest
+
+      - name: Build Docker image for backend
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/quirknotes_backend:latest -f Dockerfile_backend .
+
+      - name: Push Docker image to Docker Hub for backend
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/quirknotes_backend:latest

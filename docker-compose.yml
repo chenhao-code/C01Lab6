@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  frontend:
+    image: gruntzhou/quirknotes_frontend:latest
+    ports:
+      - "3000:80"
+
+  backend:
+    image: gruntzhou/quirknotes_backend:latest
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
